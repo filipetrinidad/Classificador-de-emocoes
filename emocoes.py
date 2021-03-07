@@ -23,11 +23,13 @@ base = [('Eu estou muito feliz', 'alegria'),
 
 stopwordsnltk = nltk.corpus.stopwords.words('portuguese')
 
-def removestopwords(texto):
-        frases = []
-        for (palavras, emocao) in texto:
-                semstopwords = [p for p in palavras.split() if p not in stopwordsnltk]
-                frases.append((semstopwords, emocao))
-        return frases
 
-print(removestopwords(base))
+def aplicastemmer(texto):
+        stemmer = nltk.stem.RSLPStemmer()
+        frasesstemmer = []
+        for (palavra, emocao) in texto:
+                comstemmer = [str (stemmer.stem(p)) for p in palavra.split() if p not in stopwordsnltk]
+                frasesstemmer.append((comstemmer, emocao))
+        return frasesstemmer
+
+stemmer = aplicastemmer(base)
