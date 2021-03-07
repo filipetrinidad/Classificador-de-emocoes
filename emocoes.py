@@ -23,10 +23,11 @@ base = [('Eu estou muito feliz', 'alegria'),
 
 stopwordsnltk = nltk.corpus.stopwords.words('portuguese')
 
-def removestopwords(text):
+def removestopwords(texto):
         frases = []
-        for(palavras, emocoes) in base:
+        for (palavras, emocao) in texto:
                 semstopwords = [p for p in palavras.split() if p not in stopwordsnltk]
-                frases.append((semstopwords, emocoes))
-                return frases
+                frases.append((semstopwords, emocao))
+        return frases
+
 print(removestopwords(base))
