@@ -33,3 +33,24 @@ def aplicastemmer(texto):
         return frasesstemmer
 
 stemmer = aplicastemmer(base)
+
+def pegarpalavras(texto):
+        todaspalavras = []
+        for (palavra, emocao) in texto:
+               todaspalavras.extend(palavra)
+        return todaspalavras
+
+palavras = pegarpalavras(stemmer)
+
+def pegafrequencia(text):
+        text = nltk.FreqDist(palavras)
+        return text
+
+frequencia = pegafrequencia(palavras)
+
+def palavrasunicas(frequencia):
+        freq = frequencia.keys()
+        return freq
+
+palavrasunicas = palavrasunicas(frequencia)
+print(palavrasunicas)
