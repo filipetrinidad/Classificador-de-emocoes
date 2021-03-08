@@ -54,3 +54,13 @@ def palavrasunicas(frequencia):
 
 palavrasunicas = palavrasunicas(frequencia)
 
+def extrairpalavras(documento):
+        doc = set (documento)
+        caracteristicas = {}
+        for palavras in palavrasunicas:
+                caracteristicas['%s' % palavras] = palavras in doc
+        return caracteristicas
+
+baseprocessada = nltk.classify.apply_features(extrairpalavras, stemmer)
+
+
