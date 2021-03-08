@@ -53,4 +53,4 @@ def palavrasunicas(frequencia):
         return freq
 
 palavrasunicas = palavrasunicas(frequencia)
-print(palavrasunicas)
+
