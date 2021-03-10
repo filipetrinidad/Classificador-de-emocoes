@@ -34,13 +34,13 @@ def aplicastemmer(texto):
 
 stemmer = aplicastemmer(base)
 
-def pegarpalavras(texto):
+def pegapalavras(texto):
         todaspalavras = []
         for (palavra, emocao) in texto:
                todaspalavras.extend(palavra)
         return todaspalavras
 
-palavras = pegarpalavras(stemmer)
+palavras = pegapalavras(stemmer)
 
 def pegafrequencia(text):
         text = nltk.FreqDist(palavras)
@@ -63,4 +63,17 @@ def extrairpalavras(documento):
 
 baseprocessada = nltk.classify.apply_features(extrairpalavras, stemmer)
 
+classificar = nltk.NaiveBayesClassifier.train(baseprocessada)
 
+texto = "inserir uma frase"
+textosteming = []
+stemmer = nltk.stem.RSLPStemmer()
+for (palavras) in texto.split():
+        comstem = [p for p in texto.split()]
+        textosteming.append(str(stemmer.stem(comstem[0])))
+
+novo = extrairpalavras(textosteming)
+probabilidade = classificar.prob_classify(novo)
+
+for classe in probabilidade.samples():
+        print("%s: %f" % (classe, probabilidade.prob(classe)))
